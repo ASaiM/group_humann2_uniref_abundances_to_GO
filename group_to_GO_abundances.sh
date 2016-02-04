@@ -96,7 +96,7 @@ fi
 # Scripts
 $MY_PATH"/download_datasets.sh"
 
-tmp_data_dir="/tmp_data/"
+tmp_data_dir="tmp_data/"
 if [ ! -d $tmp_data_dir ]; then
     mkdir $tmp_data_dir
 fi
