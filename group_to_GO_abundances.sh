@@ -36,7 +36,7 @@ output_file=""
 go_file=$MY_PATH"/data/go.obo"
 slim_go_file=$MY_PATH"/data/goslim_metagenomics.obo"
 humann2_uniref_go=$MY_PATH"/data/map_infogo1000_uniref50.txt"
-goatools_path=""
+goatools_path="/usr/bin/"
 humann2_path=`which humann2`
 
 # Manage arguments
@@ -87,10 +87,6 @@ fi
 if [ -z $output_file ]; then
     msg_error "Missing argument: -o"
     shortUsage;
-fi
-
-if [ -z $goatools_path ]; then
-    goatools_path="/usr/bin/"
 fi
 
 # Scripts
