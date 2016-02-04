@@ -96,7 +96,7 @@ fi
 # Scripts
 $MY_PATH"/download_datasets.sh"
 
-tmp_data_dir="tmp_data/"
+tmp_data_dir="tmp_data"
 if [ ! -d $tmp_data_dir ]; then
     mkdir $tmp_data_dir
 fi
@@ -113,7 +113,7 @@ python $goatools_path"/map_to_slim.py" \
     --association_file $tmp_data_dir"/humann2_go_names.txt" \
     $go_file \
     $slim_go_file \
-    > $MY_PATH"/tmp_data/humman2_go_slim.txt"
+    > $tmp_data_dir"/humman2_go_slim.txt"
 echo ""
 
 echo "Format slim GO"
