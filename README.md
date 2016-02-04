@@ -14,7 +14,7 @@ using main HUMANn2 script (Gene families) to GO slim terms. [GO slim](http://gen
 is a subset of the terms in the whole GO. For this tool, metagenomics GO slim terms
 developed by Jane Lomax and the InterPro group.
 
-These scripts call:
+Script in this tool calls:
 
 - A script to formate correspondance between Uniref50 and GO available in HUMAnN2
 package
