@@ -96,52 +96,53 @@ fi
 # Scripts
 $MY_PATH"/download_datasets.sh"
 
-if [ ! -d $MY_PATH"/tmp_data/" ]; then
-    mkdir $MY_PATH"/tmp_data/"
+tmp_data_dir="/tmp_data/"
+if [ ! -d $tmp_data_dir ]; then
+    mkdir $tmp_data_dir
 fi
 
 echo "Format HUMAnN2 UniRef50 GO mapping..."
 python $MY_PATH"/src/format_humann2_uniref_go_mapping.py" \
     --uniref_go_mapping_input $humann2_uniref_go \
-    --uniref_go_mapping_output $MY_PATH"/tmp_data/uniref_go_mapping_output.txt" \
-    --go_names $MY_PATH"/tmp_data/humann2_go_names.txt"
+    --uniref_go_mapping_output $tmp_data_dir"/uniref_go_mapping_output.txt" \
+    --go_names $tmp_data_dir"/humann2_go_names.txt"
 echo ""
 
 echo "Map to slim GO..."
 python $goatools_path"/map_to_slim.py" \
-    --association_file $MY_PATH"/tmp_data/humann2_go_names.txt" \
+    --association_file $tmp_data_dir"/humann2_go_names.txt" \
     $go_file \
     $slim_go_file \
     > $MY_PATH"/tmp_data/humman2_go_slim.txt"
 echo ""
 
 echo "Format slim GO"
-python format_go_correspondance.py \
-    --go_correspondance_input $MY_PATH"/tmp_data/humman2_go_slim.txt" \
-    --go_correspondance_output $MY_PATH"/tmp_data/formatted_humman2_go_slim.txt"
+python $MY_PATH"/src/format_go_correspondance.py" \
+    --go_correspondance_input $tmp_data_dir"/humman2_go_slim.txt" \
+    --go_correspondance_output $tmp_data_dir"/formatted_humman2_go_slim.txt"
 echo ""
 
 echo "Regroup UniRef50 to GO"
 $humann2_path"_regroup_table" \
     -i $input_file \
     -f "sum" \
-    -c $MY_PATH"/tmp_data/uniref_go_mapping_output.txt" \
-    -o $MY_PATH"/tmp_data/humann2_go_abundances.txt"
+    -c $tmp_data_dir"/uniref_go_mapping_output.txt" \
+    -o $tmp_data_dir"/humann2_go_abundances.txt"
 echo ""
 
 echo "Regroup GO to slim GO"
 $humann2_path"_regroup_table" \
-    -i $MY_PATH"/tmp_data/humann2_go_abundances.txt" \
+    -i $tmp_data_dir"/humann2_go_abundances.txt" \
     -f "sum" \
-    -c $MY_PATH"/tmp_data/formatted_humman2_go_slim.txt" \
-    -o $MY_PATH"/tmp_data/humann2_slim_go_abundances.txt"
+    -c $tmp_data_dir"/formatted_humman2_go_slim.txt" \
+    -o $tmp_data_dir"/humann2_slim_go_abundances.txt"
 echo ""
 
 echo "Format slim GO abundance"
 python $MY_PATH"/src/format_humann2_output.py" \
     --go_slim $slim_go_file \
-    --humann2_output $MY_PATH"/tmp_data/humann2_slim_go_abundances.txt" \
+    --humann2_output $tmp_data_dir"/humann2_slim_go_abundances.txt" \
     --formatted_humann2_output $output_file
 echo ""
 
-rm -rf $MY_PATH"/tmp_data/"
+rm -rf $tmp_data_dir
