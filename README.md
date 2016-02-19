@@ -27,18 +27,6 @@ using formatted correspondance
 
 # Installation
 
-## Install the requirements
-
-This tool needs:
-
-- [HUMAnN2](http://huttenhower.sph.harvard.edu/humann2/manual#markdown-header-initial-installation)
-- [GoaTools](https://github.com/tanghaibao/goatools):
-
-```
-$ pip install fisher 
-$ pip install goatools
-```
-
 ## Get the code
 
 Clone the repository:
@@ -46,6 +34,18 @@ Clone the repository:
 ```
 $ git clone https://github.com/ASaiM/group_humann2_uniref_abundances_to_GO.git
 $ cd group_humann2_uniref_abundances_to_GO
+```
+
+## Install the requirements
+
+This tool needs:
+
+- [HUMAnN2](http://huttenhower.sph.harvard.edu/humann2/manual#markdown-header-initial-installation)
+- [GoaTools](https://github.com/tanghaibao/goatools) with
+
+```
+$ pip install -r requirements.txt
+$ git clone https://github.com/tanghaibao/goatools.git
 ```
 
 ## Download required datasets
