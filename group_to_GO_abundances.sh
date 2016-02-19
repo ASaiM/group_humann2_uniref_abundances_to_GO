@@ -36,7 +36,7 @@ output_file=""
 go_file=$MY_PATH"/data/go.obo"
 slim_go_file=$MY_PATH"/data/goslim_metagenomics.obo"
 humann2_uniref_go=$MY_PATH"/data/map_infogo1000_uniref50.txt"
-goatools_path="/usr/bin/"
+goatools_path="goatools/scripts/"
 humann2_path=`which humann2`
 
 # Manage arguments
@@ -97,14 +97,16 @@ if [ ! -d $tmp_data_dir ]; then
     mkdir $tmp_data_dir
 fi
 
-echo "Format HUMAnN2 UniRef50 GO mapping..."
+echo "Format HUMAnN2 UniRef50 GO mapping"
+echo "=================================="
 python $MY_PATH"/src/format_humann2_uniref_go_mapping.py" \
     --uniref_go_mapping_input $humann2_uniref_go \
     --uniref_go_mapping_output $tmp_data_dir"/uniref_go_mapping_output.txt" \
     --go_names $tmp_data_dir"/humann2_go_names.txt"
 echo ""
 
-echo "Map to slim GO..."
+echo "Map to slim GO"
+echo "=============="
 python $goatools_path"/map_to_slim.py" \
     --association_file $tmp_data_dir"/humann2_go_names.txt" \
     $go_file \
@@ -113,12 +115,14 @@ python $goatools_path"/map_to_slim.py" \
 echo ""
 
 echo "Format slim GO"
+echo "=============="
 python $MY_PATH"/src/format_go_correspondance.py" \
     --go_correspondance_input $tmp_data_dir"/humman2_go_slim.txt" \
     --go_correspondance_output $tmp_data_dir"/formatted_humman2_go_slim.txt"
 echo ""
 
 echo "Regroup UniRef50 to GO"
+echo "======================"
 $humann2_path"_regroup_table" \
     -i $input_file \
     -f "sum" \
@@ -127,6 +131,7 @@ $humann2_path"_regroup_table" \
 echo ""
 
 echo "Regroup GO to slim GO"
+echo "====================="
 $humann2_path"_regroup_table" \
     -i $tmp_data_dir"/humann2_go_abundances.txt" \
     -f "sum" \
@@ -135,10 +140,11 @@ $humann2_path"_regroup_table" \
 echo ""
 
 echo "Format slim GO abundance"
+echo "========================"
 python $MY_PATH"/src/format_humann2_output.py" \
     --go_slim $slim_go_file \
     --humann2_output $tmp_data_dir"/humann2_slim_go_abundances.txt" \
     --formatted_humann2_output $output_file
 echo ""
 
-rm -rf $tmp_data_dir
+#rm -rf $tmp_data_dir
