@@ -118,28 +118,28 @@ echo ""
 
 echo "Regroup UniRef50 to GO"
 echo "======================"
-humann2_regroup_table \
-    -i $input_file \
-    -f "sum" \
-    -c $tmp_data_dir"/uniref_go_mapping_output.txt" \
-    -o $tmp_data_dir"/humann2_go_abundances.txt"
+#humann2_regroup_table \
+#    -i $input_file \
+#    -f "sum" \
+#    -c $tmp_data_dir"/uniref_go_mapping_output.txt" \
+#    -o $tmp_data_dir"/humann2_go_abundances.txt"
 echo ""
 
 echo "Regroup GO to slim GO"
 echo "====================="
-humann2_regroup_table \
-    -i $tmp_data_dir"/humann2_go_abundances.txt" \
-    -f "sum" \
-    -c $tmp_data_dir"/formatted_humman2_go_slim.txt" \
-    -o $tmp_data_dir"/humann2_slim_go_abundances.txt"
+#humann2_regroup_table \
+#    -i $tmp_data_dir"/humann2_go_abundances.txt" \
+#    -f "sum" \
+#    -c $tmp_data_dir"/formatted_humman2_go_slim.txt" \
+#    -o $tmp_data_dir"/humann2_slim_go_abundances.txt"
 echo ""
 
 echo "Format slim GO abundance"
 echo "========================"
-python $MY_PATH"/src/format_humann2_output.py" \
-    --go_slim $slim_go_file \
-    --humann2_output $tmp_data_dir"/humann2_slim_go_abundances.txt" \
-    --formatted_humann2_output $output_file
+#python $MY_PATH"/src/format_humann2_output.py" \
+#    --go_slim $slim_go_file \
+#    --humann2_output $tmp_data_dir"/humann2_slim_go_abundances.txt" \
+#    --formatted_humann2_output $output_file
 echo ""
 
 #rm -rf $tmp_data_dir
