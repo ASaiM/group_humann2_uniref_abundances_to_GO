@@ -1,6 +1,8 @@
 Group humann2 uniref50 abundances to Gene Ontology (GO) slim terms
 ==================================================================
 
+[![DOI](https://zenodo.org/badge/19862/ASaiM/group_humann2_uniref_abundances_to_GO.svg)](https://zenodo.org/badge/latestdoi/19862/ASaiM/group_humann2_uniref_abundances_to_GO)
+
 # Introduction
 
 [HUMAnN2](http://huttenhower.sph.harvard.edu/humann2) is a pipeline to profile
