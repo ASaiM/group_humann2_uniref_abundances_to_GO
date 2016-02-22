@@ -14,7 +14,9 @@ function shortUsage() {
 
     echo "Required options:"
     prettyOpt "-i" "Path to file with UniRef50 gene family abundance (HUMAnN2 output)"
-    prettyOpt "-o" "Path to output file which will contain GO slim term abudances"
+    prettyOpt "-m" "Path to file which will contain GO slim term abudances corresponding to molecular functions"
+    prettyOpt "-b" "Path to file which will contain GO slim term abudances corresponding to biological processes"
+    prettyOpt "-c" "Path to file which will contain GO slim term abudances corresponding to cellular components"
     echo
     echo "Other options:"
     prettyOpt "-a" "Path to basic Gene Ontology file"
@@ -32,7 +34,9 @@ function shortUsage() {
 MY_PATH=`dirname "$0"`
 
 input_file=""
-output_file=""
+molecular_function_file=""
+biological_processes_file=""
+cellular_component_file=""
 go_file=$MY_PATH"/data/go.obo"
 slim_go_file=$MY_PATH"/data/goslim_metagenomics.obo"
 humann2_uniref_go=$MY_PATH"/data/map_infogo1000_uniref50.txt"
@@ -40,13 +44,19 @@ goatools_path="goatools/scripts/"
 humann2_path="/usr/bin/"
 
 # Manage arguments
-while getopts ":i:o:a:s:u:g:p:h" opt; do
+while getopts ":i:m:b:c:a:s:u:g:p:h" opt; do
     case $opt in
         i)
             input_file=$OPTARG >&2
             ;;
-        o)
-            output_file=$OPTARG >&2
+        m)
+            molecular_function_file=$OPTARG >&2
+            ;;
+        b)
+            biological_processes_file=$OPTARG >&2
+            ;;
+        c)
+            cellular_component_file=$OPTARG >&2
             ;;
         a)
             go_file=$OPTARG >&2
@@ -84,8 +94,18 @@ if [ -z $input_file ]; then
     shortUsage;
 fi
 
-if [ -z $output_file ]; then
-    msg_error "Missing argument: -o"
+if [ -z $molecular_function_file ]; then
+    msg_error "Missing argument: -m"
+    shortUsage;
+fi
+
+if [ -z $biological_processes_file ]; then
+    msg_error "Missing argument: -b"
+    shortUsage;
+fi
+
+if [ -z $cellular_component_file ]; then
+    msg_error "Missing argument: -c"
     shortUsage;
 fi
 
@@ -144,7 +164,9 @@ echo "========================"
 python $MY_PATH"/src/format_humann2_output.py" \
     --go_slim $slim_go_file \
     --humann2_output $tmp_data_dir"/humann2_slim_go_abundances.txt" \
-    --formatted_humann2_output $output_file
+    --molecular_function_output_file $molecular_function_file \
+    --biological_processes_output_file $biological_processes_file \
+    --cellular_component_output_file $cellular_component_file
 echo ""
 
 #rm -rf $tmp_data_dir

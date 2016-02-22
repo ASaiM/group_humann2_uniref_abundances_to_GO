@@ -49,28 +49,41 @@ def extract_go_slim_annotations(args):
 
 def format_humann2_output(args, go_annotations):
     with open(args.humann2_output, "r") as humann2_output:
-        with open(args.formatted_humann2_output,"w") as formatted_humann2_output:
-            formatted_humann2_output.write("GO id\tGO name\tGO namespace\tAbundance\n")
+        output_files = {}
+        output_files['molecular_function'] = open(args.molecular_function_output_file,"w")
+        output_files['molecular_function'].write("GO id\tGO name\tAbundance\n")
 
-            for line in humann2_output.readlines()[1:]:
-                split_line = line[:-1].split('\t')
-                go_id = split_line[0]
-                abundance = split_line[1]
+        output_files['biological_process'] = open(args.biological_processes_output_file,"w")
+        output_files['biological_process'].write("GO id\tGO name\tAbundance\n")
 
-                if not go_annotations.has_key(go_id):
-                    string = go_id + " has not found annotations"
-                    raise ValueError(string)
+        output_files['cellular_component'] = open(args.cellular_component_output_file,"w")
+        output_files['cellular_component'].write("GO id\tGO name\tAbundance\n")
 
-                formatted_humann2_output.write(go_id + '\t')
-                formatted_humann2_output.write(go_annotations[go_id]["name"] + '\t')
-                formatted_humann2_output.write(go_annotations[go_id]["namespace"] + '\t')
-                formatted_humann2_output.write(abundance + '\n')
+        for line in humann2_output.readlines()[1:]:
+            split_line = line[:-1].split('\t')
+            go_id = split_line[0]
+            abundance = split_line[1]
+            namespace = go_annotations[go_id]["namespace"]
+
+            if not go_annotations.has_key(go_id):
+                string = go_id + " has not found annotations"
+                raise ValueError(string)
+
+            output_files[namespace].write(go_id + '\t')
+            output_files[namespace].write(go_annotations[go_id]["name"] + '\t')
+            output_files[namespace].write(abundance + '\n')
+
+        output_files['molecular_function'].close()
+        output_files['biological_process'].close()
+        output_files['cellular_component'].close()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--go_slim', required=True)
     parser.add_argument('--humann2_output', required=True)
-    parser.add_argument('--formatted_humann2_output', required=True)
+    parser.add_argument('--molecular_function_output_file', required=True)
+    parser.add_argument('--biological_processes_output_file', required=True)
+    parser.add_argument('--cellular_component_output_file', required=True)
     args = parser.parse_args()
 
     go_annotations = extract_go_slim_annotations(args)
