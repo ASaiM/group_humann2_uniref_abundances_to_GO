@@ -21,6 +21,7 @@ function shortUsage() {
     prettyOpt "-s" "Path to basic slim Gene Ontology file"
     prettyOpt "-u" "Path to file with HUMAnN2 correspondance betwen UniRef50 and GO"
     prettyOpt "-g" "Path to GoaTools scripts"
+    prettyOpt "-p" "Path to HUMAnN2 scripts"
 
     prettyOpt "-h" "Print this help message"
 
@@ -36,6 +37,7 @@ go_file=$MY_PATH"/data/go.obo"
 slim_go_file=$MY_PATH"/data/goslim_metagenomics.obo"
 humann2_uniref_go=$MY_PATH"/data/map_infogo1000_uniref50.txt"
 goatools_path="goatools/scripts/"
+humann2_path="/usr/bin/"
 
 # Manage arguments
 while getopts ":i:o:a:s:u:g:p:h" opt; do
@@ -57,6 +59,9 @@ while getopts ":i:o:a:s:u:g:p:h" opt; do
             ;;
         g)
             goatools_path=$OPTARG >&2
+            ;;
+        p)
+            humann2_path=$OPTARG >&2
             ;;
         h)
             shortUsage ;
@@ -118,28 +123,28 @@ echo ""
 
 echo "Regroup UniRef50 to GO"
 echo "======================"
-#humann2_regroup_table \
-#    -i $input_file \
-#    -f "sum" \
-#    -c $tmp_data_dir"/uniref_go_mapping_output.txt" \
-#    -o $tmp_data_dir"/humann2_go_abundances.txt"
+$humann2_path/humann2_regroup_table \
+    -i $input_file \
+    -f "sum" \
+    -c $tmp_data_dir"/uniref_go_mapping_output.txt" \
+    -o $tmp_data_dir"/humann2_go_abundances.txt"
 echo ""
 
 echo "Regroup GO to slim GO"
 echo "====================="
-#humann2_regroup_table \
-#    -i $tmp_data_dir"/humann2_go_abundances.txt" \
-#    -f "sum" \
-#    -c $tmp_data_dir"/formatted_humman2_go_slim.txt" \
-#    -o $tmp_data_dir"/humann2_slim_go_abundances.txt"
+$humann2_path/humann2_regroup_table \
+    -i $tmp_data_dir"/humann2_go_abundances.txt" \
+    -f "sum" \
+    -c $tmp_data_dir"/formatted_humman2_go_slim.txt" \
+    -o $tmp_data_dir"/humann2_slim_go_abundances.txt"
 echo ""
 
 echo "Format slim GO abundance"
 echo "========================"
-#python $MY_PATH"/src/format_humann2_output.py" \
-#    --go_slim $slim_go_file \
-#    --humann2_output $tmp_data_dir"/humann2_slim_go_abundances.txt" \
-#    --formatted_humann2_output $output_file
+python $MY_PATH"/src/format_humann2_output.py" \
+    --go_slim $slim_go_file \
+    --humann2_output $tmp_data_dir"/humann2_slim_go_abundances.txt" \
+    --formatted_humann2_output $output_file
 echo ""
 
 #rm -rf $tmp_data_dir
