@@ -40,6 +40,19 @@ $ cd group_humann2_uniref_abundances_to_GO
 
 This tool needs:
 
+- Git
+- Mercurial
+- VirtualEnv
+- Python with pip
+
+Once these tools installed, you can run:
+
+```
+$ install_dependencies.sh
+```
+
+This script will launch a virtual environment and install:
+
 - [HUMAnN2](http://huttenhower.sph.harvard.edu/humann2/manual#markdown-header-initial-installation)
 - [GoaTools](https://github.com/tanghaibao/goatools) with
 
@@ -58,15 +71,40 @@ $ download_datasets.sh
 
 # Usage 
 
+We recommend to execute the following command inside a virtual environment such as the one created with `install_dependencies.sh`.
+
+
 ```
-$ group_to_GO_abundances [OPTIONS] -i humann2_gene_families_abundance -o go_slim_term_abundance
+$ source .venv/bin/activate
+(.venv) $ group_to_GO_abundances.sh [OPTIONS] -i humann2_gene_families_abundance -m molecular_function_abundance -b biological_process_abundance -c cellular_component_abundance
 ```
 
 To get more information about options:
 
 ```
-$ group_to_GO_abundances -h
+$ group_to_GO_abundances.sh -h
 ```
+
+# Test
+
+To test the tool, you can run:
+
+```
+$ run_tests.sh
+```
+
+This script will install dependencies and then run `group_to_GO_abundances.sh` on test data available in `test-data` directory. This data contains:
+
+- A file with UniRef50 gene family abundances from HUMAnN2 (computed on [gut microbiota data of lean women](https://www.ebi.ac.uk/metagenomics/projects/SRP000319/samples/SRS000998/runs/SRR029687/results/versions/1.0)): `humann2_gene_families.csv`
+- A file with basic Gene Ontology, downloaded on 02/22/2016: `go_02_22_2016.obo`
+- A file with metagenomic slim Gene Ontology, downloaded on 02/22/2016: `goslim_metagenomics_02_22_2016.obo`
+- A file with humann2 correspondance between Uniref50 and GO, downloaded on 02/22/2016: `map_infogo1000_uniref50_02_22_2016.txt`
+
+After running `group_to_GO_abundances.sh`, `run_tests.sh` checks if generated output files correspond to expected ones:
+
+- `expected_molecular_function_abundances.txt` with expected abundance of GO related to molecular functions
+- `expected_biological_process_abundances.txt` with expected abundance of GO related to biological processes
+- `expected_cellular_component_abundances.txt` with expected abundance of GO related to cellular components
 
 # License 
 
