@@ -117,6 +117,10 @@ if [ ! -d $tmp_data_dir ]; then
     mkdir $tmp_data_dir
 fi
 
+if [ -d .venv ]; then
+    source .venv/bin/activate
+fi
+
 echo "Format HUMAnN2 UniRef50 GO mapping"
 echo "=================================="
 python $MY_PATH"/src/format_humann2_uniref_go_mapping.py" \
