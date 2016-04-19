@@ -15,7 +15,7 @@ before_install:
 install:
   - conda install -c bioconda goatools 
   - conda install -c bioconda humann2 
-  - conda install numpy
+  - conda uninstall numpy
   - conda install fisher
 
 script:
