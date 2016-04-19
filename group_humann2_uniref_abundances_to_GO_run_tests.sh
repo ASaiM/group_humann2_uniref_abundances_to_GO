@@ -8,7 +8,7 @@ bash group_humann2_uniref_abundances_to_GO.sh \
     -s "test-data/goslim_metagenomics_02_22_2016.obo" \
     -u "test-data/map_infogo1000_uniref50_02_22_2016.txt" \
     -g `which map_to_slim.py | xargs -n1 dirname` \
-    -p `which humann2.py | xargs -n1 dirname` \
+    -p `which humann2 | xargs -n1 dirname` \
     -m "test-data/molecular_function_abundances.txt" \
     -b "test-data/biological_process_abundance.txt" \
     -c "test-data/cellular_component_abundance.txt" 
