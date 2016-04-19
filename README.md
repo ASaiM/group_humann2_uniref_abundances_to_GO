@@ -32,7 +32,7 @@ using formatted correspondance
 ## Using `conda`
 
 ```
-$ conda install group_humann2_uniref_abundances_to_GO
+$ conda install -c bioconda group_humann2_uniref_abundances_to_GO
 ```
 
 It will manage installation of all dependencies.
