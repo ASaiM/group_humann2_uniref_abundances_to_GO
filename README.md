@@ -119,7 +119,7 @@ for details.
 
 To cite this tool, a DOI is generated for each release using [Zenodo](https://zenodo.org/).
 
-Last release: [DOI:10.5281/zenodo.49952](http://dx.doi.org/10.5281/zenodo.49952) and corresponding bibtex export:
+[Last release DOI](http://dx.doi.org/10.5281/zenodo.49952) and corresponding bibtex export:
 
 ```
 @misc{berenice_batut_2016_49952,
