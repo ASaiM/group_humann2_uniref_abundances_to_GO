@@ -10,6 +10,10 @@ def format_go_correspondance(args):
     go = {}
     with open(args.go_correspondance_input, "r") as go_correspondance_input:
         for line in go_correspondance_input.readlines():
+            if not line.startswith('GO'):
+                continue
+
+            print line
             split_line = line[:-1].split('\t')
             go_name = split_line[0]
 
