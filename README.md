@@ -114,3 +114,22 @@ You can check [`.travis.yml` file](https://raw.githubusercontent.com/ASaiM/group
 
 This tool is released under Apache 2 License. See the [LICENSE file](https://raw.githubusercontent.com/ASaiM/group_humann2_uniref_abundances_to_GO/master/LICENSE)
 for details.
+
+# Citation
+
+To cite this tool, a DOI is generated for each release using [Zenodo](https://zenodo.org/).
+
+Last release: [DOI:10.5281/zenodo.49952](http://dx.doi.org/10.5281/zenodo.49952) and corresponding bibtex export:
+
+```
+@misc{berenice_batut_2016_49952,
+  author       = {Bérénice Batut},
+  title        = {{Group abundances of UniRef50 gene families 
+                   obtained with HUMAnN2 to Gene Ontology (GO) slim
+                   terms with relative abundances: release v1.0.1}},
+  month        = apr,
+  year         = 2016,
+  doi          = {10.5281/zenodo.49952},
+  url          = {http://dx.doi.org/10.5281/zenodo.49952}
+}
+```
