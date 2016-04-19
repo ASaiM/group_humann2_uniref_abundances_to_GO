@@ -1,7 +1,7 @@
 Group abundances of UniRef50 gene families obtained with HUMAnN2 to Gene Ontology (GO) slim terms with relative abundances
 ==========================================================================================================================
 
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.49952.svg)](http://dx.doi.org/10.5281/zenodo.49952) [![Build Status](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO.svg?branch=master)](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO) [![bioconda-badge](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat-square)](http://bioconda.github.io/recipes/group_humann2_uniref_abundances_to_GO/README.html?highlight=group_humann2_uniref_abundances_to_GO)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.50086.svg)](http://dx.doi.org/10.5281/zenodo.50086) [![Build Status](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO.svg?branch=master)](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO) [![bioconda-badge](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat-square)](http://bioconda.github.io/recipes/group_humann2_uniref_abundances_to_GO/README.html?highlight=group_humann2_uniref_abundances_to_GO)
 
 # Introduction
 
@@ -123,17 +123,17 @@ for details.
 
 To cite this tool, a DOI is generated for each release using [Zenodo](https://zenodo.org/).
 
-[Last release DOI](http://dx.doi.org/10.5281/zenodo.49952) and corresponding bibtex export:
+[Last release DOI](http://dx.doi.org/10.5281/zenodo.50086) and corresponding bibtex export:
 
 ```
-@misc{berenice_batut_2016_49952,
+@misc{berenice_batut_2016_50086,
   author       = {Bérénice Batut},
   title        = {{Group abundances of UniRef50 gene families 
                    obtained with HUMAnN2 to Gene Ontology (GO) slim
-                   terms with relative abundances: release v1.0.1}},
+                   terms with relative abundances: release v1.2.0}},
   month        = apr,
   year         = 2016,
-  doi          = {10.5281/zenodo.49952},
-  url          = {http://dx.doi.org/10.5281/zenodo.49952}
+  doi          = {10.5281/zenodo.50086},
+  url          = {http://dx.doi.org/10.5281/zenodo.50086}
 }
 ```
