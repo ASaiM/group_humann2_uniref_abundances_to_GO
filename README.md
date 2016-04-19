@@ -1,9 +1,7 @@
 Group abundances of UniRef50 gene families obtained with HUMAnN2 to Gene Ontology (GO) slim terms with relative abundances
 ==========================================================================================================================
 
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.49952.svg)](http://dx.doi.org/10.5281/zenodo.49952)
-
-[![Build Status](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO.svg?branch=master)](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.49952.svg)](http://dx.doi.org/10.5281/zenodo.49952) [![Build Status](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO.svg?branch=master)](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO) [![bioconda-badge](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat-square)](http://bioconda.github.io/recipes/group_humann2_uniref_abundances_to_GO/README.html?highlight=group_humann2_uniref_abundances_to_GO)
 
 # Introduction
 
