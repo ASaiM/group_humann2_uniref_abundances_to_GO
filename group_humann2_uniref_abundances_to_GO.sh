@@ -9,7 +9,7 @@ function prettyOpt() {
 }
 
 function shortUsage() {
-    echo -e "Usage:\n\tgroup_humann2_uniref_abundances_to_GO [OPTIONS] -i humann2_gene_families_abundance -o go_slim_term_abundance"
+    echo -e "Usage:\n\tgroup_humann2_uniref_abundances_to_GO.sh [OPTIONS] -i humann2_gene_families_abundance -m molecular_function_abundances -b biological_process_abundances -c cellular_component_abundances"
     echo
 
     echo "Required options:"
@@ -81,7 +81,7 @@ while getopts ":i:m:b:c:a:s:u:g:p:h" opt; do
             ;;
         h)
             shortUsage ;
-            break
+            exit 1
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
