@@ -73,14 +73,6 @@ $ pip install -r requirements.txt
 $ git clone https://github.com/tanghaibao/goatools.git
 ```
 
-## Download required datasets
-
-Several datasets, such as Gene Ontology, must be downloaded using:
-
-```
-$ download_datasets.sh
-```
-
 # Usage 
 
 We recommend to execute the following command inside a virtual environment such as the one created with `install_dependencies.sh`.
