@@ -13,8 +13,8 @@ before_install:
   - conda info -a
 
 install:
-  - conda install --yes python=$TRAVIS_PYTHON_VERSION -c bioconda goatools 
-  - conda install --yes python=$TRAVIS_PYTHON_VERSION -c bioconda humann2 
+  - conda install -c bioconda goatools 
+  - conda install -c bioconda humann2 
 
 script:
   - ./group_humann2_uniref_abundances_to_GO_run_tests.sh
