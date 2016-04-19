@@ -46,8 +46,8 @@ fi
 go_file=$data_dir"/go.obo"
 slim_go_file=$data_dir"/goslim_metagenomics.obo"
 humann2_uniref_go=$data_dir"/map_infogo1000_uniref50.txt"
-goatools_path=`which humann2.py | xargs -n1 dirname`
-humann2_path=`which map_to_slim.py | xargs -n1 dirname`
+goatools_path=`which map_to_slim.py | xargs -n1 dirname`
+humann2_path=`which humann2 | xargs -n1 dirname`
 
 # Manage arguments
 while getopts ":i:m:b:c:a:s:u:g:p:h" opt; do
