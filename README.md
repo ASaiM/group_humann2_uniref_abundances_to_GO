@@ -73,6 +73,10 @@ $ pip install -r requirements.txt
 $ git clone https://github.com/tanghaibao/goatools.git
 ```
 
+## Using Galaxy
+
+A wrapper was also developed and is available on [Galaxy ToolShed](https://toolshed.g2.bx.psu.edu/).
+
 # Usage 
 
 ```
