@@ -75,7 +75,7 @@ $ git clone https://github.com/tanghaibao/goatools.git
 
 ## Using Galaxy
 
-A wrapper was also developed and is available on [Galaxy ToolShed](https://toolshed.g2.bx.psu.edu/).
+A wrapper was also developed and is available on [Galaxy ToolShed](https://toolshed.g2.bx.psu.edu/). It can be installed on any Galaxy instance.
 
 # Usage 
 
