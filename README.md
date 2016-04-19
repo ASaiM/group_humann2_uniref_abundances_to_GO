@@ -66,7 +66,7 @@ $ install_dependencies.sh
 This script will launch a virtual environment and install:
 
 - [HUMAnN2](http://huttenhower.sph.harvard.edu/humann2/manual#markdown-header-initial-installation)
-- [GoaTools](https://github.com/tanghaibao/goatools) with
+- [GoaTools](https://github.com/tanghaibao/goatools) > 0.6.4 with
 
 ```
 $ pip install -r requirements.txt
