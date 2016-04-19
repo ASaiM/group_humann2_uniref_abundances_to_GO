@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function msg_error() {
     printf "ERROR\n%15s   %s\n\n" "$1"
@@ -9,7 +9,7 @@ function prettyOpt() {
 }
 
 function shortUsage() {
-    echo -e "Usage:\n\tgroup_to_GO_abundances [OPTIONS] -i humann2_gene_families_abundance -o go_slim_term_abundance"
+    echo -e "Usage:\n\tgroup_humann2_uniref_abundances_to_GO.sh [OPTIONS] -i humann2_gene_families_abundance -m molecular_function_abundances -b biological_process_abundances -c cellular_component_abundances"
     echo
 
     echo "Required options:"
@@ -37,11 +37,17 @@ input_file=""
 molecular_function_file=""
 biological_processes_file=""
 cellular_component_file=""
-go_file=$MY_PATH"/data/go.obo"
-slim_go_file=$MY_PATH"/data/goslim_metagenomics.obo"
-humann2_uniref_go=$MY_PATH"/data/map_infogo1000_uniref50.txt"
-goatools_path="goatools/scripts/"
-humann2_path="/usr/bin/"
+data_dir=$MY_PATH"/data/"
+
+if [ ! -d $data_dir ]; then
+    mkdir $data_dir
+fi
+
+go_file=$data_dir"/go.obo"
+slim_go_file=$data_dir"/goslim_metagenomics.obo"
+humann2_uniref_go=$data_dir"/map_infogo1000_uniref50.txt"
+goatools_path=`which map_to_slim.py | xargs -n1 dirname`
+humann2_path=`which humann2 | xargs -n1 dirname`
 
 # Manage arguments
 while getopts ":i:m:b:c:a:s:u:g:p:h" opt; do
@@ -75,7 +81,7 @@ while getopts ":i:m:b:c:a:s:u:g:p:h" opt; do
             ;;
         h)
             shortUsage ;
-            break
+            exit 1
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
@@ -109,8 +115,7 @@ if [ -z $cellular_component_file ]; then
     shortUsage;
 fi
 
-# Scripts
-$MY_PATH"/download_datasets.sh"
+$MY_PATH"/src/group_humann2_uniref_abundances_to_GO_download_datasets.sh" $go_file $slim_go_file $humann2_uniref_go
 
 tmp_data_dir="tmp_data"
 if [ ! -d $tmp_data_dir ]; then

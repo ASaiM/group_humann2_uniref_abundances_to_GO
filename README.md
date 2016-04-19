@@ -29,7 +29,17 @@ using formatted correspondance
 
 # Installation
 
-## Get the code
+## Using `conda`
+
+```
+$ conda install group_humann2_uniref_abundances_to_GO
+```
+
+It will manage installation of all dependencies.
+
+## Using code source
+
+### Get the code
 
 Clone the repository:
 
@@ -38,7 +48,7 @@ $ git clone https://github.com/ASaiM/group_humann2_uniref_abundances_to_GO.git
 $ cd group_humann2_uniref_abundances_to_GO
 ```
 
-## Install the requirements
+### Install the requirements
 
 This tool needs:
 
@@ -56,35 +66,27 @@ $ install_dependencies.sh
 This script will launch a virtual environment and install:
 
 - [HUMAnN2](http://huttenhower.sph.harvard.edu/humann2/manual#markdown-header-initial-installation)
-- [GoaTools](https://github.com/tanghaibao/goatools) with
+- [GoaTools](https://github.com/tanghaibao/goatools) > 0.6.4 with
 
 ```
 $ pip install -r requirements.txt
 $ git clone https://github.com/tanghaibao/goatools.git
 ```
 
-## Download required datasets
+## Using Galaxy
 
-Several datasets, such as Gene Ontology, must be downloaded using:
-
-```
-$ download_datasets.sh
-```
+A wrapper was also developed and is available on [Galaxy ToolShed](https://toolshed.g2.bx.psu.edu/). It can be installed on any Galaxy instance.
 
 # Usage 
 
-We recommend to execute the following command inside a virtual environment such as the one created with `install_dependencies.sh`.
-
-
 ```
-$ source .venv/bin/activate
-(.venv) $ group_to_GO_abundances.sh [OPTIONS] -i humann2_gene_families_abundance -m molecular_function_abundance -b biological_process_abundance -c cellular_component_abundance
+$ ./group_humann2_uniref_abundances_to_GO.sh [OPTIONS] -i humann2_gene_families_abundance -m molecular_function_abundance -b biological_process_abundance -c cellular_component_abundance
 ```
 
 To get more information about options:
 
 ```
-$ group_to_GO_abundances.sh -h
+$ ./group_humann2_uniref_abundances_to_GO.sh -h
 ```
 
 # Test
@@ -92,7 +94,7 @@ $ group_to_GO_abundances.sh -h
 To test the tool, you can run:
 
 ```
-$ run_tests.sh
+$ ./group_humann2_uniref_abundances_to_GO_run_tests.sh
 ```
 
 This script will install dependencies and then run `group_to_GO_abundances.sh` on test data available in `test-data` directory. This data contains:
