@@ -13,7 +13,6 @@ def format_go_correspondance(args):
             if not line.startswith('GO'):
                 continue
 
-            print line
             split_line = line[:-1].split('\t')
             go_name = split_line[0]
 
