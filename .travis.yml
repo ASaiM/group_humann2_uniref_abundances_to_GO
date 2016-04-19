@@ -1,0 +1,20 @@
+language: python
+python: 2.7
+os:
+  - linux
+
+before_install:
+  - curl http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -o miniconda.sh
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda info -a
+
+install:
+  - conda install --yes python=$TRAVIS_PYTHON_VERSION goatools 
+  - conda install --yes python=$TRAVIS_PYTHON_VERSION humann2 
+
+script:
+  - ./group_humann2_uniref_abundances_to_GO_run_tests.sh
