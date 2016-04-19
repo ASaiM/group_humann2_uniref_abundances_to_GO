@@ -89,26 +89,26 @@ To get more information about options:
 $ ./group_humann2_uniref_abundances_to_GO.sh -h
 ```
 
-# Test
+# Tests
 
-To test the tool, you can run:
+This tool is tested at each change of the GitHub repository using Travis CI.
 
-```
-$ ./group_humann2_uniref_abundances_to_GO_run_tests.sh
-```
+[![Build Status](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO.svg?branch=master)](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO)
 
-This script will install dependencies and then run `group_to_GO_abundances.sh` on test data available in `test-data` directory. This data contains:
+In these tests, dependencies are installed and `group_humann2_uniref_abundances_to_GO.sh` is run on test data available in `test-data` directory:
 
 - A file with UniRef50 gene family abundances from HUMAnN2 (computed on [gut microbiota data of lean women](https://www.ebi.ac.uk/metagenomics/projects/SRP000319/samples/SRS000998/runs/SRR029687/results/versions/1.0)): `humann2_gene_families.csv`
 - A file with basic Gene Ontology, downloaded on 02/22/2016: `go_02_22_2016.obo`
 - A file with metagenomic slim Gene Ontology, downloaded on 02/22/2016: `goslim_metagenomics_02_22_2016.obo`
 - A file with humann2 correspondance between Uniref50 and GO, downloaded on 02/22/2016: `map_infogo1000_uniref50_02_22_2016.txt`
 
-After running `group_to_GO_abundances.sh`, `run_tests.sh` checks if generated output files correspond to expected ones:
+Generated outputs are compared to expected ones:
 
 - `expected_molecular_function_abundances.txt` with expected abundance of GO related to molecular functions
 - `expected_biological_process_abundances.txt` with expected abundance of GO related to biological processes
 - `expected_cellular_component_abundances.txt` with expected abundance of GO related to cellular components
+
+You can check [`.travis.yml` file](https://raw.githubusercontent.com/ASaiM/group_humann2_uniref_abundances_to_GO/master/.travis.yml) for more information. 
 
 # License 
 
