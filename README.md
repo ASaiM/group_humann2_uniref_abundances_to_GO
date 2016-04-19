@@ -29,7 +29,17 @@ using formatted correspondance
 
 # Installation
 
-## Get the code
+## Using `conda`
+
+```
+$ conda install group_humann2_uniref_abundances_to_GO
+```
+
+It will manage installation of all dependencies.
+
+## Using code source
+
+### Get the code
 
 Clone the repository:
 
@@ -38,7 +48,7 @@ $ git clone https://github.com/ASaiM/group_humann2_uniref_abundances_to_GO.git
 $ cd group_humann2_uniref_abundances_to_GO
 ```
 
-## Install the requirements
+### Install the requirements
 
 This tool needs:
 
