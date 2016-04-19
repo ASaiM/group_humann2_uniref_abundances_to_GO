@@ -3,6 +3,8 @@ Group abundances of UniRef50 gene families obtained with HUMAnN2 to Gene Ontolog
 
 [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.49952.svg)](http://dx.doi.org/10.5281/zenodo.49952)
 
+[![Build Status](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO.svg?branch=master)](https://travis-ci.org/ASaiM/group_humann2_uniref_abundances_to_GO)
+
 # Introduction
 
 [HUMAnN2](http://huttenhower.sph.harvard.edu/humann2) is a pipeline to profile
