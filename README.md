@@ -75,18 +75,14 @@ $ git clone https://github.com/tanghaibao/goatools.git
 
 # Usage 
 
-We recommend to execute the following command inside a virtual environment such as the one created with `install_dependencies.sh`.
-
-
 ```
-$ source .venv/bin/activate
-(.venv) $ group_to_GO_abundances.sh [OPTIONS] -i humann2_gene_families_abundance -m molecular_function_abundance -b biological_process_abundance -c cellular_component_abundance
+$ group_humann2_uniref_abundances_to_GO.sh [OPTIONS] -i humann2_gene_families_abundance -m molecular_function_abundance -b biological_process_abundance -c cellular_component_abundance
 ```
 
 To get more information about options:
 
 ```
-$ group_to_GO_abundances.sh -h
+$ group_humann2_uniref_abundances_to_GO.sh -h
 ```
 
 # Test
@@ -94,7 +90,7 @@ $ group_to_GO_abundances.sh -h
 To test the tool, you can run:
 
 ```
-$ run_tests.sh
+$ group_humann2_uniref_abundances_to_GO_run_tests.sh
 ```
 
 This script will install dependencies and then run `group_to_GO_abundances.sh` on test data available in `test-data` directory. This data contains:
