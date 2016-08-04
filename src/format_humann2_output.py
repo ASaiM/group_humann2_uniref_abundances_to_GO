@@ -63,6 +63,10 @@ def format_humann2_output(args, go_annotations):
             split_line = line[:-1].split('\t')
             go_id = split_line[0]
             abundance = split_line[1]
+
+            if go_id == "UNGROUPED":
+                continue
+
             namespace = go_annotations[go_id]["namespace"]
 
             if not go_annotations.has_key(go_id):
