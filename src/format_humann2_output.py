@@ -64,7 +64,10 @@ def format_humann2_output(args, go_annotations):
             go_id = split_line[0]
             abundance = split_line[1]
 
-            if go_id == "UNGROUPED":
+            if '|' in go_id:
+                go_id = go_id.split('|')[0];
+                
+            if go_id == "UNGROUPED" or go_id == "UNMAPPED":
                 continue
 
             namespace = go_annotations[go_id]["namespace"]
