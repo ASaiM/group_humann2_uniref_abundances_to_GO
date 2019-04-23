@@ -64,8 +64,10 @@ def format_humann2_output(args, go_annotations):
             go_id = split_line[0]
             abundance = split_line[1]
 
+            extra_id = ''
             if '|' in go_id:
-                go_id = go_id.split('|')[0];
+                go_id, extra_id = go_id.split('|')
+                extra_id = "|" + extra_id
                 
             if go_id == "UNGROUPED" or go_id == "UNMAPPED":
                 continue
@@ -77,7 +79,7 @@ def format_humann2_output(args, go_annotations):
                 raise ValueError(string)
 
             output_files[namespace].write(go_id + '\t')
-            output_files[namespace].write(go_annotations[go_id]["name"] + '\t')
+            output_files[namespace].write(go_annotations[go_id]["name"] + extra_id + '\t')
             output_files[namespace].write(abundance + '\n')
 
         output_files['molecular_function'].close()
