@@ -50,23 +50,35 @@ def extract_go_slim_annotations(args):
 def format_humann2_output(args, go_annotations):
     with open(args.humann2_output, "r") as humann2_output:
         output_files = {}
+
+        # Check if any tax IDs are present then set up the appropriate header extension
+        tax_header = ''
+        if any(re.match('.+\|g__.+\.s__.+', line) for line in humann2_output):
+            tax_header = '\tGenus\tSpecies'
+
         output_files['molecular_function'] = open(args.molecular_function_output_file,"w")
-        output_files['molecular_function'].write("GO id\tGO name\tAbundance\tMisc.\n")
+        output_files['molecular_function'].write("GO id\tGO name\tAbundance" + tax_header + "\n")
 
         output_files['biological_process'] = open(args.biological_processes_output_file,"w")
-        output_files['biological_process'].write("GO id\tGO name\tAbundance\tMisc.\n")
+        output_files['biological_process'].write("GO id\tGO name\tAbundance" + tax_header + "\n")
 
         output_files['cellular_component'] = open(args.cellular_component_output_file,"w")
-        output_files['cellular_component'].write("GO id\tGO name\tAbundance\tMisc.\n")
+        output_files['cellular_component'].write("GO id\tGO name\tAbundance" + tax_header + "\n")
 
-        for line in humann2_output.readlines()[1:]:
+        # Reset to beginning of file and skip header
+        humann2_output.seek(0)
+        next(humann2_output)
+
+        for line in humann2_output:
             split_line = line[:-1].split('\t')
             go_id = split_line[0]
             abundance = split_line[1]
 
-            extra_id = ''
+            genus = species = ''
             if '|' in go_id:
                 go_id, extra_id = go_id.split('|')
+                if re.match('g__.+\.s__.+', extra_id):
+                    genus, species = re.match('g__(.+)\.s__(.+)', extra_id).groups()
 
             if go_id == "UNGROUPED" or go_id == "UNMAPPED":
                 continue
@@ -78,8 +90,12 @@ def format_humann2_output(args, go_annotations):
 
             output_files[namespace].write(go_id + '\t')
             output_files[namespace].write(go_annotations[go_id]["name"] + '\t')
-            output_files[namespace].write(abundance + '\t')
-            output_files[namespace].write(extra_id + '\n')
+            if tax_header == '':
+                output_files[namespace].write(abundance + '\n')
+            else:
+                output_files[namespace].write(abundance + '\t')
+                output_files[namespace].write(genus.replace('_',' ') + '\t')
+                output_files[namespace].write(species.replace('_',' ') + '\n')
 
         output_files['molecular_function'].close()
         output_files['biological_process'].close()
