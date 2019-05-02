@@ -50,6 +50,7 @@ def extract_go_slim_annotations(args):
 def format_humann2_output(args, go_annotations):
     with open(args.humann2_output, "r") as humann2_output:
         output_files = {}
+
         output_files['molecular_function'] = open(args.molecular_function_output_file,"w")
         output_files['molecular_function'].write("GO id\tGO name\tAbundance\n")
 
@@ -59,22 +60,28 @@ def format_humann2_output(args, go_annotations):
         output_files['cellular_component'] = open(args.cellular_component_output_file,"w")
         output_files['cellular_component'].write("GO id\tGO name\tAbundance\n")
 
-        for line in humann2_output.readlines()[1:]:
+        # skip header
+        next(humann2_output)
+        for line in humann2_output:
             split_line = line[:-1].split('\t')
             go_id = split_line[0]
             abundance = split_line[1]
 
-            if go_id == "UNGROUPED":
+            extra_id = ''
+            if '|' in go_id:
+                go_id, extra_id = go_id.split('|')
+                extra_id = '|' + extra_id
+
+            if go_id == "UNGROUPED" or go_id == "UNMAPPED":
                 continue
 
             namespace = go_annotations[go_id]["namespace"]
-
-            if not go_annotations.has_key(go_id):
+            if not go_id in go_annotations:
                 string = go_id + " has not found annotations"
                 raise ValueError(string)
 
-            output_files[namespace].write(go_id + '\t')
-            output_files[namespace].write(go_annotations[go_id]["name"] + '\t')
+            output_files[namespace].write(go_id + extra_id + '\t')
+            output_files[namespace].write(go_annotations[go_id]["name"] + extra_id + '\t')
             output_files[namespace].write(abundance + '\n')
 
         output_files['molecular_function'].close()
